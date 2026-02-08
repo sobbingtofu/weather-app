@@ -3,5 +3,5 @@ export interface FavoriteLocation {
   name: string; // Original location name
   alias?: string; // User defined name
   lat: number;
-  lon: number;
+  long: number;
 }

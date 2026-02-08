@@ -55,7 +55,7 @@ export const WeatherDetailCard = ({
             {activateFavoriteStar && coordsState && (
               <FavoriteStar
                 lat={coordsState.lat}
-                lon={coordsState.long}
+                long={coordsState.long}
                 locationName={addressNameState || weatherData.location}
               />
             )}
