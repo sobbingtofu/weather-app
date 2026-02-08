@@ -1,3 +1,4 @@
+import {TimeThemeStyles} from "@/entities/date-time";
 import {FavoriteLocation} from "@/features/manage-favorites";
 import {MapPin, Pen, Trash2} from "lucide-react";
 import {useRouter} from "next/navigation";
@@ -7,9 +8,10 @@ interface FavoriteCardProps {
   item: FavoriteLocation;
   onRemove: (location: Omit<FavoriteLocation, "id">) => void;
   onUpdate: (id: string, alias: string) => void;
+  themeStyles: TimeThemeStyles;
 }
 
-function FavoriteCard({item, onRemove, onUpdate}: FavoriteCardProps) {
+function FavoriteCard({item, onRemove, onUpdate, themeStyles}: FavoriteCardProps) {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(item.alias || item.name);
@@ -41,7 +43,7 @@ function FavoriteCard({item, onRemove, onUpdate}: FavoriteCardProps) {
   return (
     <div
       onClick={handleCardClick}
-      className="border rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer bg-white flex justify-between items-center group"
+      className={`rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer bg-white flex justify-between items-center group ${themeStyles.cardBg}`}
     >
       <div className="flex flex-col gap-1">
         {isEditing ? (

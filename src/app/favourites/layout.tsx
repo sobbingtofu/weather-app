@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "favourites",
+  title: "Favourites",
 };
 
 export default function Layout({children}: {children: React.ReactNode}) {

@@ -5,6 +5,7 @@ const STORAGE_KEY = "weather-app-favorites";
 
 export function useFavorites() {
   const [favorites, setFavorites] = useState<FavoriteLocation[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -12,6 +13,7 @@ export function useFavorites() {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setFavorites(JSON.parse(stored));
     }
+    setIsLoaded(true);
   }, []);
 
   const saveToStorage = (newFavorites: FavoriteLocation[]) => {
@@ -46,5 +48,5 @@ export function useFavorites() {
     return favorites.some((f) => f.lat === lat && f.long === long);
   };
 
-  return {favorites, addFavorite, removeFavorite, updateAlias, isFavorite};
+  return {favorites, addFavorite, removeFavorite, updateAlias, isFavorite, isLoaded};
 }
