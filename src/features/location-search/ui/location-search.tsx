@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useRef, useEffect} from "react";
 import {useLocationSearch} from "../model/use-location-search";
 import {MapPin} from "lucide-react";
 
@@ -11,6 +11,20 @@ export function LocationSearch({onSelectLocation, onCurrentLocation}: LocationSe
   const {searchAddressInput, setSearchAddressInput, addressDropdownItems} = useLocationSearch();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const inputAndDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutsideInputAndDropdown = (event: MouseEvent) => {
+      if (inputAndDropdownRef.current && !inputAndDropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutsideInputAndDropdown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideInputAndDropdown);
+    };
+  }, []);
 
   const handleSelectDistrictDropdown = (dropDownItem: string) => {
     setSearchAddressInput(dropDownItem);
@@ -50,7 +64,7 @@ export function LocationSearch({onSelectLocation, onCurrentLocation}: LocationSe
   return (
     <div className="w-full max-w-md relative z-50">
       <div className="flex gap-2">
-        <div className="relative flex-1">
+        <div className="relative flex-1" ref={inputAndDropdownRef}>
           <input
             type="text"
             value={searchAddressInput}
