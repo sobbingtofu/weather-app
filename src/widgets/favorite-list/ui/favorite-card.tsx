@@ -2,7 +2,7 @@
 
 import {TimeThemeStyles} from "@/entities/date-time";
 import {FavoriteLocation} from "@/features/manage-favorites";
-import {MapPin, ArrowDown, ArrowUp} from "lucide-react";
+import {ArrowDown, ArrowUp} from "lucide-react";
 import {useRouter} from "next/navigation";
 import React, {useEffect, useRef, useState} from "react";
 import CardEditButtons from "./card-edit-buttons";
@@ -114,7 +114,7 @@ function FavoriteCard({item, onRemove, onUpdate, themeStyles}: FavoriteCardProps
           <div className="h-[50px] w-full flex items-center justify-between">
             {/* 별칭 주소 */}
             <div className="flex-1 min-w-0 mr-2">
-              <h3 className="font-bold text-base sm:text-lg text-gray-800 mb-1 w-[200px] truncate">
+              <h3 className="font-bold text-sm sm:text-lg text-gray-800 mb-1 w-[200px] truncate">
                 {item.nickName || item.address}
               </h3>
               {item.nickName && <p className="text-xs text-gray-600 truncate">{item.address}</p>}
@@ -131,11 +131,7 @@ function FavoriteCard({item, onRemove, onUpdate, themeStyles}: FavoriteCardProps
             </div>
           </div>
         )}
-        {/* 위도 경도 */}
-        {/* <div className="flex items-center text-xs text-gray-400 mt-2">
-          <MapPin size={12} className="mr-1" />
-          {item.lat.toFixed(3)}, {item.long.toFixed(3)}
-        </div> */}
+
         {/* 날씨 정보 */}
         {isWeatherLoading ? (
           <div className="flex items-center gap-8 mr-2 sm:mr-0 shrink-0 animate-pulse">
