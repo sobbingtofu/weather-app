@@ -1,3 +1,3 @@
 export * from "./model/types";
-export * from "./model/use-favorites";
+export * from "./model/useFavorites";
 export * from "./ui/favorite-star";

@@ -1,5 +1,5 @@
 import {Star} from "lucide-react";
-import {useFavorites} from "../model/use-favorites";
+import {useFavorites} from "../model/useFavorites";
 import {useState, useEffect, useRef} from "react";
 
 interface FavoriteStarProps {

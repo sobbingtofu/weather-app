@@ -1,1 +1,1 @@
-export * from "./model/use-detect-location";
+export * from "./model/useDetectLocation";

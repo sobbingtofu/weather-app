@@ -1,5 +1,5 @@
 // 공공데이터포털에서 날씨정보 가져오기
-import {getCurrentTimeInfo, formatDate} from "@/shared/lib/date";
+import {getCurrentTimeInfo, formatDate} from "@/entities/date-time/lib/dateTimeUtils";
 import {
   convertLatLong,
   determineSkyState,

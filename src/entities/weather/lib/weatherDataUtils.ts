@@ -1,4 +1,4 @@
-import {formatDate} from "@/shared/lib/date";
+import {formatDate} from "@/entities/date-time/lib/dateTimeUtils";
 import {SkyStateType} from "../model/types";
 
 /**

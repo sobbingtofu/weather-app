@@ -1,5 +1,5 @@
 import {useState, useRef, useEffect} from "react";
-import {useLocationSearch} from "../model/use-location-search";
+import {useLocationSearch} from "../model/useLocationSearch";
 import {MapPin, Search} from "lucide-react";
 
 interface LocationSearchProps {
