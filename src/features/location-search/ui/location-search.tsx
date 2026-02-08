@@ -95,10 +95,11 @@ export function LocationSearch({handleSelectOfficialAddress, onCurrentLocation}:
               value={searchAddressInput}
               onChange={(e) => {
                 setSearchAddressInput(e.target.value);
-                setIsDropdownOpen(true);
                 setSelectedIndex(-1);
+                if (e.target.value.trim().length > 1) {
+                  setIsDropdownOpen(true);
+                }
               }}
-              onFocus={() => setIsDropdownOpen(true)}
               onKeyDown={handleKeyDown}
               placeholder="시, 군, 구, 동 검색"
               className="w-full border-none outline-none focus:outline-none focus:ring-0 text-sm sm:text-base
@@ -112,24 +113,28 @@ export function LocationSearch({handleSelectOfficialAddress, onCurrentLocation}:
               날씨 조회
             </button>
           </div>
-          {isDropdownOpen && addressDropdownItems.length > 0 && (
+          {isDropdownOpen && searchAddressInput.trim().length > 0 && (
             <div
               className="absolute top-full left-4 right-4 bg-white border rounded-xl shadow-lg mt-2 max-h-60 z-10
               pl-4 pr-2 py-2"
             >
-              <ul className="max-h-56 overflow-y-auto scrollbar-thin" ref={dropDownListRef}>
-                {addressDropdownItems.map((dropDownItem, index) => (
-                  <li
-                    key={dropDownItem}
-                    onClick={() => handleSelectDistrictDropdown(dropDownItem)}
-                    className={`py-2 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 ${
-                      index === selectedIndex ? "bg-blue-50" : ""
-                    }`}
-                  >
-                    {dropDownItem}
-                  </li>
-                ))}
-              </ul>
+              {addressDropdownItems.length > 0 ? (
+                <ul className="max-h-56 overflow-y-auto scrollbar-thin" ref={dropDownListRef}>
+                  {addressDropdownItems.map((dropDownItem, index) => (
+                    <li
+                      key={dropDownItem}
+                      onClick={() => handleSelectDistrictDropdown(dropDownItem)}
+                      className={`py-2 hover:bg-blue-50 cursor-pointer text-sm text-gray-700 ${
+                        index === selectedIndex ? "bg-blue-50" : ""
+                      }`}
+                    >
+                      {dropDownItem}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="py-2 text-sm text-gray-500 text-center">검색된 주소가 없습니다</div>
+              )}
             </div>
           )}
         </div>
