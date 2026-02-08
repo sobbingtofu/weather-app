@@ -41,6 +41,7 @@ export const WeatherDetailCard = ({
     <main
       className={`sm:min-h-[500px] w-full rounded-[1.6rem] sm:rounded-[2.5rem] px-6 py-6 sm:p-10 shadow-xl relative overflow-hidden transition-all duration-300 backdrop-blur-md ${themeStyles.cardBg}`}
     >
+      {/* 반응형 여백공간: 화면이 750px보다 작으면 높이가 0이 되고, 그 이상일 때 늘어나며 최대 25px까지 커지도록 설정 */}
       <div className="block sm:hidden h-[clamp(0px,calc(100dvh-750px),25px)] w-full " />
       <div className="flex flex-col h-full">
         {/* 헤더: 주소 및 즐겨찾기 */}
@@ -144,7 +145,8 @@ export const WeatherDetailCard = ({
           )}
         </div>
       </div>
-      <div className=" block sm:hiddenh-[clamp(0px,calc(100dvh-750px),25px)] w-full" />
+      {/* 반응형 여백공간: 화면이 750px보다 작으면 높이가 0이 되고, 그 이상일 때 늘어나며 최대 h-8(약 32px)까지 커지도록 설정 */}
+      <div className="block sm:hidden h-[clamp(0px,calc(100dvh-750px),32px)]" />
     </main>
   );
 };
