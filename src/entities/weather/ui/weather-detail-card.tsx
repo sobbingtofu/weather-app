@@ -111,6 +111,7 @@ export const WeatherDetailCard = ({
                 <div className={`text-6xl sm:text-[112px] font-bold ${themeStyles.text} leading-none tracking-tighter`}>
                   {weatherData.currentTemperature}°
                 </div>
+                {/* 하늘 상태 및 그래픽 */}
                 <div className="flex flex-col items-center justify-center mt-4">
                   <WeatherIcon skyState={weatherData.currentSkyState} />
                   <span className={`text-sm ${themeStyles.footer} uppercase tracking-widest`}>
