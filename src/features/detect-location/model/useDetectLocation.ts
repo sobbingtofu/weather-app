@@ -51,6 +51,7 @@ export function useDetectLocation({setErrorMsg}: UseDetectLocationProps) {
           setIsDetectingLocation(false);
           resolve(null);
         },
+        {timeout: 10000},
       );
     });
   }, [setErrorMsg]);
