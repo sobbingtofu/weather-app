@@ -1,22 +1,22 @@
 import {MouseEvent, RefObject, useRef, useState} from "react";
 
 export const useDraggableScroll = <T extends HTMLElement>(): {
-  ref: RefObject<T | null>;
+  scrollContainerRef: RefObject<T | null>;
   onMouseDown: (e: MouseEvent<T>) => void;
   onMouseLeave: () => void;
   onMouseUp: () => void;
   onMouseMove: (e: MouseEvent<T>) => void;
 } => {
-  const ref = useRef<T>(null);
+  const scrollContainerRef = useRef<T>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
   const onMouseDown = (e: MouseEvent<T>) => {
-    if (!ref.current) return;
+    if (!scrollContainerRef.current) return;
     setIsDragging(true);
-    setStartX(e.pageX - ref.current.offsetLeft);
-    setScrollLeft(ref.current.scrollLeft);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
   };
 
   const onMouseLeave = () => {
@@ -28,12 +28,12 @@ export const useDraggableScroll = <T extends HTMLElement>(): {
   };
 
   const onMouseMove = (e: MouseEvent<T>) => {
-    if (!isDragging || !ref.current) return;
+    if (!isDragging || !scrollContainerRef.current) return;
     e.preventDefault();
-    const x = e.pageX - ref.current.offsetLeft;
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
     const walk = (x - startX) * 2;
-    ref.current.scrollLeft = scrollLeft - walk;
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  return {ref, onMouseDown, onMouseLeave, onMouseUp, onMouseMove};
+  return {scrollContainerRef, onMouseDown, onMouseLeave, onMouseUp, onMouseMove};
 };
