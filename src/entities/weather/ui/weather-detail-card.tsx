@@ -57,7 +57,7 @@ export const WeatherDetailCard = ({
               </p>
             </div>
             {activateFavoriteStar && coordsState && (
-              <div className="p-2 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
+              <div className="p-2">
                 <FavoriteStar
                   lat={coordsState.lat}
                   long={coordsState.long}
@@ -74,9 +74,7 @@ export const WeatherDetailCard = ({
               </div>
               <div className="flex flex-col items-center justify-center mt-4">
                 <WeatherIcon skyState={weatherData.currentSkyState} />
-                <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">
-                  {weatherData.currentSkyState}
-                </span>
+                <span className="text-sm text-gray-400 uppercase tracking-widest">{weatherData.currentSkyState}</span>
               </div>
             </div>
 

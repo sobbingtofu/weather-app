@@ -58,11 +58,15 @@ export function FavoriteStar({lat, long, locationName}: FavoriteStarProps) {
         removeFavorite({lat, long, name: locationName});
       }
       setOptimisticFav(null);
-    }, 3000);
+    }, 1500);
   };
 
   return (
-    <button onClick={toggle} className="p-2 transition-colors hover:bg-gray-100 rounded-full">
+    <button
+      onClick={toggle}
+      className="p-2 transition-transform rounded-full cursor-pointer
+      hover:scale-[108%] ease-in-out"
+    >
       <Star className={`w-6 h-6 ${isFavOnScreen ? "fill-yellow-400 text-yellow-400" : "text-gray-400"}`} />
     </button>
   );
