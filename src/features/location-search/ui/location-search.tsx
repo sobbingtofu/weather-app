@@ -3,14 +3,16 @@ import {useLocationSearch} from "../model/useLocationSearch";
 import {MapPin, Search} from "lucide-react";
 
 interface LocationSearchProps {
-  onSelectLocation: (locationName: string) => void;
+  handleSelectOfficialAddress: (locationName: string) => void;
   onCurrentLocation: () => void;
 }
 
-export function LocationSearch({onSelectLocation, onCurrentLocation}: LocationSearchProps) {
+export function LocationSearch({handleSelectOfficialAddress, onCurrentLocation}: LocationSearchProps) {
   const {searchAddressInput, setSearchAddressInput, addressDropdownItems} = useLocationSearch();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [selectedOfficialAddress, setSelectedOfficialAddress] = useState<string | null>(null);
+
   const inputAndDropdownRef = useRef<HTMLDivElement>(null);
   const dropDownListRef = useRef<HTMLUListElement>(null);
 
@@ -41,6 +43,7 @@ export function LocationSearch({onSelectLocation, onCurrentLocation}: LocationSe
 
   const handleSelectDistrictDropdown = (dropDownItem: string) => {
     setSearchAddressInput(dropDownItem);
+    setSelectedOfficialAddress(dropDownItem);
     setIsDropdownOpen(false);
     setSelectedIndex(-1);
   };
@@ -59,7 +62,10 @@ export function LocationSearch({onSelectLocation, onCurrentLocation}: LocationSe
         e.preventDefault();
         handleSelectDistrictDropdown(addressDropdownItems[selectedIndex]);
       } else {
-        handleGetWeatherBtnClick();
+        if (selectedOfficialAddress !== null) {
+          console.log("Enter pressed - 검색어로 날씨 조회 실행: ", selectedOfficialAddress);
+          handleGetWeatherBtnClick();
+        }
       }
     } else if (e.key === "Escape") {
       setIsDropdownOpen(false);
@@ -71,7 +77,11 @@ export function LocationSearch({onSelectLocation, onCurrentLocation}: LocationSe
       alert("검색어를 입력해주세요.");
       return;
     }
-    onSelectLocation(searchAddressInput);
+    if (selectedOfficialAddress === null) {
+      alert("드롭다운에서 주소를 선택해주세요.");
+      return;
+    }
+    handleSelectOfficialAddress(selectedOfficialAddress);
   };
 
   return (

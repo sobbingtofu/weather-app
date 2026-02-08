@@ -100,7 +100,10 @@ export function WeatherSearchViewContainer({
     <div className="max-w-4xl mx-auto w-full px-4">
       <div className="flex flex-col gap-2 sm:gap-8">
         {enableSearch && (
-          <LocationSearch onSelectLocation={handleSearchSelectedAddress} onCurrentLocation={handleCurrentLocation} />
+          <LocationSearch
+            handleSelectOfficialAddress={handleSearchSelectedAddress}
+            onCurrentLocation={handleCurrentLocation}
+          />
         )}
         <div className="block sm:hidden h-[clamp(0px,calc(100dvh-750px),25px)] w-full " />
         <WeatherDetailCard
