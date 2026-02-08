@@ -64,7 +64,7 @@ export function FavoriteStar({lat, long, locationName}: FavoriteStarProps) {
   return (
     <button
       onClick={toggleFavoriteStar}
-      className="p-2 transition-transform rounded-full cursor-pointer
+      className="transition-transform rounded-full cursor-pointer
       hover:scale-[108%] ease-in-out"
     >
       <Star className={`w-6 h-6 ${isFavOnScreen ? "fill-yellow-400 text-yellow-400" : "text-gray-400"}`} />

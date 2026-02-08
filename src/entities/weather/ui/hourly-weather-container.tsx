@@ -10,10 +10,10 @@ export const HourlyWeatherContainer = ({hourlyForecast}: HourlyWeatherContainerP
 
   return (
     <div className="w-full overflow-hidden">
-      <h3 className="text-sm font-medium text-gray-400 mb-3 px-2">시간대별 예보</h3>
+      <h3 className="text-xs sn:text-sm font-medium text-gray-600 mb-3 px-2">시간대별 예보</h3>
       <div
         ref={ref}
-        className="flex gap-3 overflow-x-auto pb-4 cursor-grab active:cursor-grabbing scrollbar-hide select-none px-2"
+        className="flex gap-3 overflow-x-auto pb-1 sm:pb-4 cursor-grab active:cursor-grabbing scrollbar-hide select-none px-2"
         onMouseDown={onMouseDown}
         onMouseLeave={onMouseLeave}
         onMouseUp={onMouseUp}
@@ -29,7 +29,7 @@ export const HourlyWeatherContainer = ({hourlyForecast}: HourlyWeatherContainerP
             <div className="mb-2">
               <span className="text-blue-500 font-medium text-xs whitespace-nowrap">{item.hourlySkyState}</span>
             </div>
-            <span className="font-bold text-xl text-gray-800">{item.temp}°</span>
+            <span className="font-bold text-base sm:text-xl text-gray-800">{item.temp}°</span>
           </div>
         ))}
       </div>

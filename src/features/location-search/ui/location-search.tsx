@@ -78,7 +78,7 @@ export function LocationSearch({onSelectLocation, onCurrentLocation}: LocationSe
     <div className="w-full relative z-50 max-w-2xl mx-auto">
       <div className="flex flex-col gap-4">
         <div className="relative w-full" ref={inputAndDropdownRef}>
-          <div className="flex w-full items-center pl-6 pr-2 py-2 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex w-full items-center sm:pl-6 pl-4 pr-2 py-2 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
             <Search className="w-5 h-5 text-gray-400 mr-2" />
             <input
               type="text"
@@ -91,11 +91,13 @@ export function LocationSearch({onSelectLocation, onCurrentLocation}: LocationSe
               onFocus={() => setIsDropdownOpen(true)}
               onKeyDown={handleKeyDown}
               placeholder="시, 군, 구, 동 검색"
-              className="w-full border-none outline-none focus:outline-none focus:ring-0 text-gray-700 placeholder-gray-400 bg-transparent h-10"
+              className="w-full border-none outline-none focus:outline-none focus:ring-0 text-sm sm:text-base
+              text-gray-700 placeholder-gray-400 bg-transparent h-10"
             />
             <button
               onClick={handleGetWeatherBtnClick}
-              className="bg-blue-500 text-white px-6 py-2.5 rounded-full hover:bg-blue-600 font-medium whitespace-nowrap transition-colors cursor-pointer"
+              className="bg-blue-500 text-white px-4 sm:px-6 py-2.5 rounded-full hover:bg-blue-600
+              font-medium whitespace-nowrap transition-colors cursor-pointer sm:text-base text-xs"
             >
               날씨 조회
             </button>
