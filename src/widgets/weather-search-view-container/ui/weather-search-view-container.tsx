@@ -6,13 +6,21 @@ import {LocationSearch} from "@/features/location-search";
 import {forwardGeocode, reverseGeocode} from "@/entities/location";
 import {useDetectLocation} from "@/features/detect-location";
 import {WeatherDetailCard} from "@/entities/weather/ui/weather-detail-card";
+import {THEME_STYLES, TimeThemeStyles} from "@/entities/date-time";
 
 interface WeatherSearchViewContainerProps {
   enableSearch?: boolean;
   initialCoords?: {lat: number; long: number};
+  themeStyles?: TimeThemeStyles;
 }
 
-export function WeatherSearchViewContainer({enableSearch = true, initialCoords}: WeatherSearchViewContainerProps) {
+const defaultThemeStyles: TimeThemeStyles = THEME_STYLES["dawn"];
+
+export function WeatherSearchViewContainer({
+  enableSearch = true,
+  initialCoords,
+  themeStyles = defaultThemeStyles,
+}: WeatherSearchViewContainerProps) {
   const [coordsState, setCoordsState] = useState<{lat: number; long: number} | null>(initialCoords || null);
   const [addressNameState, setAddressNameState] = useState<string>("");
   const [isAddressNameLoading, setIsAddressNameLoading] = useState(false);
@@ -103,6 +111,7 @@ export function WeatherSearchViewContainer({enableSearch = true, initialCoords}:
           activateFavoriteStar={weatherData && coordsState ? true : false}
           coordsState={coordsState}
           addressNameState={addressNameState}
+          themeStyles={themeStyles}
         />
       </div>
     </div>

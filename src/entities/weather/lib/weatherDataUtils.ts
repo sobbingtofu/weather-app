@@ -1,5 +1,5 @@
 import {formatDate} from "@/entities/date-time/lib/dateTimeUtils";
-import {SkyStateType} from "../model/types";
+import {SkyStateType} from "@/entities/weather/model/types";
 
 /**
  * 위도(lat), 경도(long)를 기상청 격자 좌표(nx, ny)로 변환하는 함수

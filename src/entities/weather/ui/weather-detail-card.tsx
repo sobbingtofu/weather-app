@@ -3,6 +3,7 @@ import {FavoriteStar} from "@/features/manage-favorites";
 import {WeatherResponse} from "../model/types";
 import {HourlyWeatherContainer} from "./hourly-weather-container";
 import {WeatherIcon} from "./weather-icon";
+import {TimeThemeStyles} from "@/entities/date-time/model/type";
 
 interface WeatherDetailCardProps {
   isAddressNameLoading: boolean;
@@ -14,6 +15,7 @@ interface WeatherDetailCardProps {
   activateFavoriteStar: boolean;
   coordsState: {lat: number; long: number} | null;
   addressNameState: string;
+  themeStyles: TimeThemeStyles;
 }
 
 export const WeatherDetailCard = ({
@@ -26,9 +28,12 @@ export const WeatherDetailCard = ({
   activateFavoriteStar,
   coordsState,
   addressNameState,
+  themeStyles,
 }: WeatherDetailCardProps) => {
   return (
-    <main className="min-h-[500px] w-full bg-white rounded-[2.5rem] p-10 shadow-xl relative overflow-hidden transition-all duration-300">
+    <main
+      className={`min-h-[500px] w-full rounded-[2.5rem] p-10 shadow-xl relative overflow-hidden transition-all duration-300 backdrop-blur-md ${themeStyles.cardBg}`}
+    >
       {isAddressNameLoading || isWeatherLoading || isDetectingLocation ? (
         <div className="absolute inset-0 flex items-center justify-center">
           <Loader2 className="animate-spin w-10 h-10 text-blue-500" />
