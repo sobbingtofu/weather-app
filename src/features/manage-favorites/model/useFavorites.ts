@@ -8,12 +8,33 @@ export function useFavorites() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setFavorites(JSON.parse(stored));
-    }
-    setIsLoaded(true);
+    const loadFromStorage = () => {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        setFavorites(JSON.parse(stored));
+      } else {
+        setFavorites([]);
+      }
+      setIsLoaded(true);
+    };
+
+    loadFromStorage();
+
+    /**
+     * 다른 탭에서의 업데이트 감지되면 loadFromStorage 실행해 탭 간 데이터 일관성 유지
+     */
+    const handleStorageChange = (event: StorageEvent) => {
+      console.log("handleStorageChange");
+      if (event.key === STORAGE_KEY) {
+        loadFromStorage();
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
   }, []);
 
   const saveToStorage = (newFavorites: FavoriteLocation[]) => {
