@@ -7,7 +7,7 @@ const MAX_RESULTS = 10;
 export function useLocationSearch() {
   const [searchAddressInput, setSearchAddressInput] = useState("");
 
-  const results = useMemo(() => {
+  const addressDropdownItems = useMemo(() => {
     if (!searchAddressInput.trim()) return [];
 
     return DISTRICT_JSON.filter((districtItem) => districtItem.includes(searchAddressInput)).slice(0, MAX_RESULTS);
@@ -16,6 +16,6 @@ export function useLocationSearch() {
   return {
     searchAddressInput,
     setSearchAddressInput,
-    results,
+    addressDropdownItems,
   };
 }
