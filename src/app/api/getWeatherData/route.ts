@@ -58,8 +58,8 @@ export async function GET(request: Request) {
     const currentPty = pty ? pty.obsrValue : "0";
 
     // 2. 단기예보 데이터 파싱 (시간대별로 데이터 그룹화)
-    let minTemperature = null;
-    let maxTemperature = null;
+    let minTemperature: string | null = null;
+    let maxTemperature: string | null = null;
     const hourlyMap: Record<string, {temp?: string; sky?: string; pty?: string; date: string}> = {};
 
     fcstItems.forEach((item) => {
@@ -94,6 +94,14 @@ export async function GET(request: Request) {
       }))
       .filter((item) => item.date === todayStr) // 당일 데이터만 필터링 (필요시 제거 가능)
       .sort((a, b) => Number(a.date + a.time.replace(":", "")) - Number(b.date + b.time.replace(":", "")));
+
+    if (!minTemperature || !maxTemperature) {
+      const temps = hourlyForecast.map((t) => parseFloat(t.temp)).filter((t) => !isNaN(t));
+      if (temps.length > 0) {
+        minTemperature = Math.min(...temps).toString();
+        maxTemperature = Math.max(...temps).toString();
+      }
+    }
 
     const responseData: WeatherResponse = {
       currentTemperature,
