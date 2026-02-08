@@ -12,6 +12,8 @@ export function HomePage() {
         <div className="flex items-center gap-4">
           <Link
             href="/favourites"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-1 text-gray-600 hover:text-gray-900 font-medium text-sm
             transition-colors duration-200 ease-in-out"
           >
