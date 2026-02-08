@@ -3,8 +3,6 @@
  ** UTC 기반 환경(Vercel 등)에서도 정확한 KST(UTC+9) 시간을 계산하여 반환
  */
 export function getCurrentTimeInfo() {
-  // Use server time. Note: Vercel/NextJS might be UTC.
-  // Converting to KST (UTC+9)
   const now = new Date();
   const utc = now.getTime() + now.getTimezoneOffset() * 60000;
   const kstGap = 9 * 60 * 60 * 1000; // 9시간

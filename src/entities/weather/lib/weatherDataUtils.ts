@@ -1,4 +1,5 @@
 import {formatDate} from "@/shared/lib/date";
+import {SkyStateType} from "../model/types";
 
 /**
  * 위도(lat), 경도(long)를 기상청 격자 좌표(nx, ny)로 변환하는 함수
@@ -102,3 +103,21 @@ export function getVilageFcstBase(date: Date) {
     base_time: bestTime.toString().padStart(2, "0") + "00",
   };
 }
+
+/**
+ * 강수 형태(PTY)와 하늘 상태(SKY)를 기반으로 종합적인 하늘 상태를 판별하는 함수
+ */
+export const determineSkyState = (pty: string, sky: string): SkyStateType => {
+  // 강수 형태(PTY)가 우선순위가 높음
+  if (pty === "1") return "비";
+  if (pty === "2") return "비/눈";
+  if (pty === "3") return "눈";
+  if (pty === "4") return "소나기";
+
+  // 강수가 없을 경우 하늘 상태(SKY) 판별
+  if (sky === "1") return "맑음";
+  if (sky === "3") return "구름많음";
+  if (sky === "4") return "흐림";
+
+  return "맑음";
+};

@@ -28,6 +28,7 @@ export interface HourlyForecast {
   time: string;
   temp: string;
   date: string;
+  hourlySkyState: SkyStateType;
 }
 
 export interface WeatherResponse {
@@ -35,4 +36,7 @@ export interface WeatherResponse {
   minTemperature: string | null;
   maxTemperature: string | null;
   hourlyForecast: HourlyForecast[];
+  currentSkyState: SkyStateType;
 }
+
+export type SkyStateType = "맑음" | "구름많음" | "흐림" | "비" | "비/눈" | "눈" | "소나기";

@@ -25,7 +25,8 @@ export const HourlyWeatherContainer = ({hourlyForecast}: HourlyWeatherContainerP
             key={`${item.date}-${item.time}-${idx}`}
             className="flex flex-col items-center min-w-[70px] p-3 rounded-xl bg-slate-50 border border-slate-100"
           >
-            <span className="text-xs text-gray-500 mb-2">{item.time}</span>
+            <span className="text-xs text-gray-500 mb-1">{item.time}</span>
+            <span className="text-xs font-medium text-blue-500 mb-1">{item.hourlySkyState}</span>
             <span className="font-bold text-lg text-gray-700">{item.temp}°</span>
           </div>
         ))}

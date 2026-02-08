@@ -64,6 +64,7 @@ export const WeatherDetailCard = ({
           <div className="flex-1 flex flex-col items-center py-8 w-full">
             <div className="flex flex-col items-center justify-center mb-8">
               <div className="text-6xl font-bold text-gray-800 mb-2">{weatherData.currentTemperature}°</div>
+              <div className="text-xl font-medium text-gray-600 mb-4">{weatherData.currentSkyState}</div>
               <div className="flex gap-6 text-gray-500 text-sm font-medium">
                 <span className="flex items-center">
                   <span className="text-blue-500 mr-1">▼</span>
