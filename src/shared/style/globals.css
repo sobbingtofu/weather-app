@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --color-default-grey: #f0f0f0;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

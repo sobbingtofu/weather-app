@@ -23,11 +23,13 @@ export const HourlyWeatherContainer = ({hourlyForecast}: HourlyWeatherContainerP
         {hourlyForecast.map((item, idx) => (
           <div
             key={`${item.date}-${item.time}-${idx}`}
-            className="flex flex-col items-center min-w-[70px] p-3 rounded-xl bg-slate-50 border border-slate-100"
+            className="flex flex-col items-center min-w-[80px] p-4 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
           >
-            <span className="text-xs text-gray-500 mb-1">{item.time}</span>
-            <span className="text-xs font-medium text-blue-500 mb-1">{item.hourlySkyState}</span>
-            <span className="font-bold text-lg text-gray-700">{item.temp}°</span>
+            <span className="text-xs font-medium text-gray-400 mb-2">{item.time}</span>
+            <div className="mb-2">
+              <span className="text-blue-500 font-medium text-xs whitespace-nowrap">{item.hourlySkyState}</span>
+            </div>
+            <span className="font-bold text-xl text-gray-800">{item.temp}°</span>
           </div>
         ))}
       </div>

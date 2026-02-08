@@ -16,9 +16,7 @@ export function WeatherDetailPage({lat, long}: WeatherDetailPageProps) {
         </Link>
         <h1 className="text-2xl font-bold text-gray-800">상세 날씨</h1>
       </div>
-      <div className="max-w-2xl mx-auto w-full">
-        <WeatherSearchViewContainer initialCoords={{lat, long}} enableSearch={false} />
-      </div>
+      <WeatherSearchViewContainer initialCoords={{lat, long}} enableSearch={false} />
     </div>
   );
 }

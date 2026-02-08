@@ -87,8 +87,8 @@ export function WeatherSearchViewContainer({enableSearch = true, initialCoords}:
   });
 
   return (
-    <div className="border p-4 rounded-xl shadow-sm bg-white/50 backdrop-blur-sm">
-      <div className="flex flex-col gap-6">
+    <div className="max-w-4xl mx-auto w-full px-4">
+      <div className="flex flex-col gap-8">
         {enableSearch && (
           <LocationSearch onSelectLocation={handleSearchSelectedAddress} onCurrentLocation={handleCurrentLocation} />
         )}
