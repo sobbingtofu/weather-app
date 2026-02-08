@@ -5,7 +5,7 @@ import React, {useState} from "react";
 
 interface FavoriteCardProps {
   item: FavoriteLocation;
-  onRemove: (id: string) => void;
+  onRemove: (location: Omit<FavoriteLocation, "id">) => void;
   onUpdate: (id: string, alias: string) => void;
 }
 
@@ -23,7 +23,7 @@ function FavoriteCard({item, onRemove, onUpdate}: FavoriteCardProps) {
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (confirm("삭제하시겠습니까?")) {
-      onRemove(item.id);
+      onRemove({lat: item.lat, long: item.long, name: item.name});
     }
   };
 
@@ -63,7 +63,7 @@ function FavoriteCard({item, onRemove, onUpdate}: FavoriteCardProps) {
         )}
         <div className="flex items-center text-xs text-gray-400 mt-2">
           <MapPin size={12} className="mr-1" />
-          {item.lat.toFixed(4)}, {item.lon.toFixed(4)}
+          {item.lat.toFixed(4)}, {item.long.toFixed(4)}
         </div>
       </div>
 

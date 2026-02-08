@@ -24,16 +24,17 @@ export function useFavorites() {
       alert("즐겨찾기는 최대 6개까지 저장할 수 있습니다.");
       return;
     }
-    const exists = favorites.some((f) => f.lat === location.lat && f.lon === location.lon);
+    const exists = favorites.some((f) => f.lat === location.lat && f.long === location.long);
     if (exists) {
       return;
     }
 
-    const newFavorite = {...location, id: `${location.lat}-${location.lon}`};
+    const newFavorite = {...location, id: `${location.lat}-${location.long}`};
     saveToStorage([...favorites, newFavorite]);
   };
 
-  const removeFavorite = (id: string) => {
+  const removeFavorite = (location: Omit<FavoriteLocation, "id">) => {
+    const id = `${location.lat}-${location.long}`;
     saveToStorage(favorites.filter((f) => f.id !== id));
   };
 
@@ -41,8 +42,8 @@ export function useFavorites() {
     saveToStorage(favorites.map((f) => (f.id === id ? {...f, alias} : f)));
   };
 
-  const isFavorite = (lat: number, lon: number) => {
-    return favorites.some((f) => f.lat === lat && f.lon === lon);
+  const isFavorite = (lat: number, long: number) => {
+    return favorites.some((f) => f.lat === lat && f.long === long);
   };
 
   return {favorites, addFavorite, removeFavorite, updateAlias, isFavorite};
