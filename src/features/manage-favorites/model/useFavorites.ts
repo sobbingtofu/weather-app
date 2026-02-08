@@ -28,10 +28,11 @@ export function useFavorites() {
     }
     const exists = favorites.some((f) => f.lat === location.lat && f.long === location.long);
     if (exists) {
+      console.warn("이미 등록된 id(위도-경도)에 대해 즐겨찾기 추가 시도 - 무시처리");
       return;
     }
 
-    const newFavorite = {...location, id: `${location.lat}-${location.long}`};
+    const newFavorite = {...location, id: `${location.lat}-${location.long}`, nickName: location.address};
     saveToStorage([...favorites, newFavorite]);
   };
 
@@ -40,13 +41,13 @@ export function useFavorites() {
     saveToStorage(favorites.filter((f) => f.id !== id));
   };
 
-  const updateAlias = (id: string, alias: string) => {
-    saveToStorage(favorites.map((f) => (f.id === id ? {...f, alias} : f)));
+  const updateNickName = (id: string, nickName: string) => {
+    saveToStorage(favorites.map((f) => (f.id === id ? {...f, nickName} : f)));
   };
 
   const isFavorite = (lat: number, long: number) => {
     return favorites.some((f) => f.lat === lat && f.long === long);
   };
 
-  return {favorites, addFavorite, removeFavorite, updateAlias, isFavorite, isLoaded};
+  return {favorites, addFavorite, removeFavorite, updateNickName, isFavorite, isLoaded};
 }

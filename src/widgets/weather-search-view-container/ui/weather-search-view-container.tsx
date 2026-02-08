@@ -12,6 +12,7 @@ interface WeatherSearchViewContainerProps {
   enableSearch?: boolean;
   initialCoords?: {lat: number; long: number};
   themeStyles?: TimeThemeStyles;
+  enableFavoriteStar?: boolean;
 }
 
 const defaultThemeStyles: TimeThemeStyles = THEME_STYLES["dawn"];
@@ -20,6 +21,7 @@ export function WeatherSearchViewContainer({
   enableSearch = true,
   initialCoords,
   themeStyles = defaultThemeStyles,
+  enableFavoriteStar = true,
 }: WeatherSearchViewContainerProps) {
   const [coordsState, setCoordsState] = useState<{lat: number; long: number} | null>(initialCoords || null);
   const [addressNameState, setAddressNameState] = useState<string>("");
@@ -108,7 +110,7 @@ export function WeatherSearchViewContainer({
           weatherQueryErr={weatherQueryErr}
           errorMsg={errorMsg}
           weatherData={weatherData ?? undefined}
-          activateFavoriteStar={weatherData && coordsState ? true : false}
+          activateFavoriteStar={enableFavoriteStar && !!coordsState}
           coordsState={coordsState}
           addressNameState={addressNameState}
           themeStyles={themeStyles}

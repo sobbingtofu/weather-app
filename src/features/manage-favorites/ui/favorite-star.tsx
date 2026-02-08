@@ -42,7 +42,7 @@ export function FavoriteStar({lat, long, locationName}: FavoriteStarProps) {
     };
   }, []);
 
-  const toggle = () => {
+  const toggleFavoriteStar = () => {
     const nextState = !isFavOnScreen;
     setOptimisticFav(nextState);
 
@@ -52,10 +52,10 @@ export function FavoriteStar({lat, long, locationName}: FavoriteStarProps) {
       debounceDelayRef.current = null;
       if (nextState) {
         console.log("디바운스 후 즐겨찾기 추가 실제 실행");
-        addFavorite({lat, long, name: locationName});
+        addFavorite({lat, long, address: locationName});
       } else {
         console.log("디바운스 후 즐겨찾기 제거 실제 실행");
-        removeFavorite({lat, long, name: locationName});
+        removeFavorite({lat, long, address: locationName});
       }
       setOptimisticFav(null);
     }, 1500);
@@ -63,7 +63,7 @@ export function FavoriteStar({lat, long, locationName}: FavoriteStarProps) {
 
   return (
     <button
-      onClick={toggle}
+      onClick={toggleFavoriteStar}
       className="p-2 transition-transform rounded-full cursor-pointer
       hover:scale-[108%] ease-in-out"
     >

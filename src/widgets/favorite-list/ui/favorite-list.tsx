@@ -9,7 +9,7 @@ interface FavoriteListProps {
 }
 
 export function FavoriteList({themeStyles}: FavoriteListProps) {
-  const {favorites, removeFavorite, updateAlias, isLoaded} = useFavorites();
+  const {favorites, removeFavorite, updateNickName, isLoaded} = useFavorites();
 
   if (!isLoaded) {
     return (
@@ -32,7 +32,7 @@ export function FavoriteList({themeStyles}: FavoriteListProps) {
           key={fav.id}
           item={fav}
           onRemove={removeFavorite}
-          onUpdate={updateAlias}
+          onUpdate={updateNickName}
           themeStyles={themeStyles}
         />
       ))}
