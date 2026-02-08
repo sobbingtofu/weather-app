@@ -9,6 +9,7 @@ export function useFavorites() {
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFavorites(JSON.parse(stored));
     }
   }, []);
@@ -25,7 +26,6 @@ export function useFavorites() {
     }
     const exists = favorites.some((f) => f.lat === location.lat && f.lon === location.lon);
     if (exists) {
-      // Optional: Alert already exists
       return;
     }
 
