@@ -1,19 +1,20 @@
-import type {Metadata} from "next";
 import "./../shared/style/globals.css";
+import {Inter} from "next/font/google";
+import {ReactQueryProvider} from "@/shared/lib/providers/query-client-provider";
 
-export const metadata: Metadata = {
-  title: "Weather App",
-  description: "A simple weather application built with Next.js",
+const inter = Inter({subsets: ["latin"]});
+
+export const metadata = {
+  title: "날씨 검색기",
+  description: "날씨를 검색하세요",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en">
-      <body className="antialiased">{children}</body>
+    <html lang="ko">
+      <body className={inter.className}>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+      </body>
     </html>
   );
 }
