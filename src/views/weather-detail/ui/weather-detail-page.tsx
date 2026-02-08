@@ -18,7 +18,7 @@ export function WeatherDetailPage({lat, long}: WeatherDetailPageProps) {
 
   return (
     <div
-      className={`min-h-screen bg-gradient-to-br transition-colors duration-1000 flex flex-col items-center pt-12 ${themeStyles.bg}`}
+      className={`min-h-screen min-w-[330px] bg-gradient-to-br transition-colors duration-1000 flex flex-col items-center pt-12 ${themeStyles.bg}`}
     >
       <div className="w-full max-w-4xl px-6 flex items-center gap-4 mb-12">
         <Link

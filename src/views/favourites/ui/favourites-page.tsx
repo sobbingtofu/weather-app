@@ -9,7 +9,7 @@ export function FavouritesPage() {
   const themeStyles: TimeThemeStyles = THEME_STYLES[currentTheme];
 
   return (
-    <div className={`min-h-screen p-6 md:p-10 bg-gradient-to-br  ${themeStyles.bg}`}>
+    <div className={`min-h-screen min-w-[330px] p-6 md:p-10 bg-gradient-to-br  ${themeStyles.bg}`}>
       <div className="max-w-4xl mx-auto">
         <header className="mb-8 flex items-center gap-4">
           <h1 className={`text-2xl font-bold ${themeStyles.text}`}>즐겨찾기</h1>

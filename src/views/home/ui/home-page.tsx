@@ -10,7 +10,7 @@ export function HomePage() {
 
   return (
     <div
-      className={`min-h-screen bg-gradient-to-br transition-colors duration-1000 flex flex-col items-center pt-4 sm:pt-8 ${themeStyles.bg}`}
+      className={`min-h-screen min-w-[330px] bg-gradient-to-br transition-colors duration-1000 flex flex-col items-center pt-4 sm:pt-8 ${themeStyles.bg}`}
     >
       <div className="block sm:hidden h-[clamp(0px,calc(100dvh-750px),50px)]" />
       <div className="w-full max-w-4xl px-6 flex justify-between items-center mb-5 sm:mb-10">

@@ -39,7 +39,7 @@ export const WeatherDetailCard = ({
 
   return (
     <main
-      className={`sm:min-h-[500px] w-full rounded-[2.5rem] px-6 py-6 sm:p-10 shadow-xl relative overflow-hidden transition-all duration-300 backdrop-blur-md ${themeStyles.cardBg}`}
+      className={`sm:min-h-[500px] w-full rounded-[1.6rem] sm:rounded-[2.5rem] px-6 py-6 sm:p-10 shadow-xl relative overflow-hidden transition-all duration-300 backdrop-blur-md ${themeStyles.cardBg}`}
     >
       <div className="block sm:hidden h-[clamp(0px,calc(100dvh-750px),25px)] w-full " />
       <div className="flex flex-col h-full">

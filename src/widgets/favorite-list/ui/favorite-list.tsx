@@ -1,8 +1,8 @@
 "use client";
 
 import {useFavorites} from "@/features/manage-favorites";
-import FavoriteCard from "./favorite-card";
 import {TimeThemeStyles} from "@/entities/date-time/model/type";
+import FavoriteCard from "@/widgets/favorite-list/ui/favorite-card";
 
 interface FavoriteListProps {
   themeStyles: TimeThemeStyles;

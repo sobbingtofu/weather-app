@@ -1,8 +1,11 @@
+"use client";
+
 import {TimeThemeStyles} from "@/entities/date-time";
 import {FavoriteLocation} from "@/features/manage-favorites";
-import {MapPin, Pen, Trash2} from "lucide-react";
+import {MapPin} from "lucide-react";
 import {useRouter} from "next/navigation";
 import React, {useEffect, useRef, useState} from "react";
+import CardEditButtons from "./card-edit-buttons";
 
 interface FavoriteCardProps {
   item: FavoriteLocation;
@@ -60,9 +63,10 @@ function FavoriteCard({item, onRemove, onUpdate, themeStyles}: FavoriteCardProps
     <div
       ref={favoriteCardRef}
       onClick={handleCardClick}
-      className={`h-[120px] rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer bg-white flex justify-between items-center group ${themeStyles.cardBg}`}
+      className={`h-[120px] rounded-lg p-5 hover:shadow-md transition-shadow cursor-pointer bg-white
+      flex flex-row sm:flex-row justify-between items-center group ${themeStyles.cardBg}`}
     >
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 w-full">
         {isEditing ? (
           <div className="flex gap-2 h-[50px] py-2" onClick={(e) => e.stopPropagation()}>
             <div className="relative flex-1 h-full flex items-center">
@@ -95,9 +99,20 @@ function FavoriteCard({item, onRemove, onUpdate, themeStyles}: FavoriteCardProps
             </button>
           </div>
         ) : (
-          <div className="h-[50px]">
-            <h3 className="font-bold text-lg text-gray-800 mb-1">{item.nickName || item.address}</h3>
-            {item.nickName && <p className="text-xs text-gray-400">{item.address}</p>}
+          <div className="h-[50px] w-full sm:block flex items-center justify-between">
+            <div>
+              <h3 className="font-bold text-base sm:text-lg text-gray-800 mb-1">{item.nickName || item.address}</h3>
+              {item.nickName && <p className="text-xs text-gray-400">{item.address}</p>}
+            </div>
+            <div className="block sm:hidden">
+              <CardEditButtons
+                handleEditClick={handleEditClick}
+                handleDelete={handleDelete}
+                dyanmicOpacity={false}
+                iconSize={12}
+                iconBackground={true}
+              />
+            </div>
           </div>
         )}
         <div className="flex items-center text-xs text-gray-400 mt-2">
@@ -105,17 +120,8 @@ function FavoriteCard({item, onRemove, onUpdate, themeStyles}: FavoriteCardProps
           {item.lat.toFixed(3)}, {item.long.toFixed(3)}
         </div>
       </div>
-
-      <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-        <button
-          onClick={handleEditClick}
-          className="p-3 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-full"
-        >
-          <Pen size={16} />
-        </button>
-        <button onClick={handleDelete} className="p-3 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full">
-          <Trash2 size={16} />
-        </button>
+      <div className="sm:block hidden">
+        <CardEditButtons handleEditClick={handleEditClick} handleDelete={handleDelete} />
       </div>
     </div>
   );
